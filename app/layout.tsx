@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-
+import Link from "next/link";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -10,13 +10,29 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({
-  children,
+  children, // all pages in the app dir
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        <nav
+          style={{
+            width: "100%",
+            background: "teal",
+            fontSize: "50px",
+            display: "flex",
+            justifyContent: "space-around",
+            alignItems: "center",
+          }}
+        >
+          <Link href="/articles">Articles</Link>
+          <Link href="/">Home</Link>
+          <Link href="/posts">Posts</Link>
+        </nav>
+        {children}
+      </body>
     </html>
   );
 }
